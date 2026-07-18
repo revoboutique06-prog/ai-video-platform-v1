@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إدارة الفيديوهات</title>
+  <style>
+    body { font-family: Arial; background: #f7f7f7; padding: 20px; }
+    .card {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 8px 12px;
+      margin-right: 5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .delete { background: #e74c3c; color: #fff; }
+    .rename { background: #3498db; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <h2>⚙️ إدارة الفيديوهات</h2>
+  <div id="videos"></div>
+
+  <script>
+    async function loadVideos() {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch("http://localhost:3000/video/all", {
+        headers: { "Authorization": "Bearer " + token }
+      });
+
+      const data = await res.json();
+      const container = document.getElementById("videos");
+
+      data.videos.forEach(video => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <h3>${video.filename}</h3>
+          <button class="rename" onclick="renameVideo('${video.filename}')">إعادة تسمية</button>
+          <button class="delete" onclick="deleteVideo('${video.filename}')">حذف</button>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    async function deleteVideo(filename) {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch("http://localhost:3000/video/delete/" + filename, {
+        method: "DELETE",
+        headers: { "Authorization": "Bearer " + token }
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("✔ تم حذف الفيديو");
+        location.reload();
+      } else {
+        alert("❌ خطأ أثناء الحذف");
+      }
+    }
+
+    async function renameVideo(filename) {
+      const newName = prompt("اكتب الاسم الجديد (مع .mp4):");
+
+      if (!newName) return;
+
+      const token = localStorage.getItem("token");
+
+      const res = await fetch("http://localhost:3000/video/rename", {
+        method: "PUT",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ oldName: filename, newName })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("✔ تم تغيير الاسم");
+        location.reload();
+      } else {
+        alert("❌ خطأ أثناء إعادة التسمية");
+      }
+    }
+
+    loadVideos();
+  </script>
+
+</body>
+</html>
