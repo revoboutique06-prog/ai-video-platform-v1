@@ -19,4 +19,9 @@ export class AuthController {
 
     return { success: true };
   }
+
+  @Post('check')
+  async check(@Req() req) {
+    return { loggedIn: !!req.session.userId };
+  }
 }
