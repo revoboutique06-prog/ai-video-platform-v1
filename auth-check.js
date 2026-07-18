@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
+async function checkAuth() {
+  try {
+    const response = await fetch("/auth/check", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" }
+    });
 
-  <!-- حماية الصفحة -->
-  <script src="auth-check.js"></script>
-  <script>checkAuth();</script>
+    const data = await response.json();
 
-  <title>صفحة محمية</title>
-</head>
-<body>
+    // إذا المستخدم غير مسجل دخول → رجّعه لصفحة تسجيل الدخول
+    if (!data.loggedIn) {
+      window.location.href = "login.html";
+    }
 
-  <h1>مرحبا ريفو</h1>
-  <p>هذه الصفحة محمية بالكامل.</p>
-
-</body>
-</html>
+  } catch (error) {
+    console.error("خطأ في التحقق من تسجيل الدخول:", error);
+    window.location.href = "login.html";
+  }
+}
