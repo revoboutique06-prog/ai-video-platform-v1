@@ -1,36 +1,53 @@
-import { UseGuards, Controller, Post, Body, Get, Query, Param, Delete } from '@nestjs/common';
-import { AuthGuard } from './auth.guard';
-import { VideosService } from './videos.service';
+import { Controller, Post, Body, Get } from '@nestjs/common';
+import { PrismaService } from '../prisma.service';
+import fetch from 'node-fetch';
 
 @Controller('videos')
 export class VideosController {
-  constructor(private readonly videosService: VideosService) {}
+  constructor(private prisma: PrismaService) {}
 
-  // توليد فيديو جديد
-  @UseGuards(AuthGuard)
-  @Post('generate')
-  async generateVideo(@Body('prompt') prompt: string) {
-    return this.videosService.generate(prompt);
+  @Post('create')
+  async createVideo(@Body() body) {
+    const { prompt } = body;
+
+    if (!prompt) {
+      return { success: false, message: "الرجاء كتابة وصف الفيديو" };
+    }
+
+    // إرسال الطلب إلى Hailuo AI
+    const response = await fetch("https://api.hailuoai.com/v1/video", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt: prompt,
+        duration: 5
+      })
+    });
+
+    const result = await response.json();
+
+    // رابط الفيديو الحقيقي
+    const videoUrl = result?.data?.video_url;
+
+    if (!videoUrl) {
+      return { success: false, message: "فشل توليد الفيديو من Hailuo AI" };
+    }
+
+    // حفظ الفيديو في قاعدة البيانات
+    const video = await this.prisma.video.create({
+      data: {
+        prompt,
+        url: videoUrl
+      }
+    });
+
+    return { success: true, video };
   }
 
-  // جلب كل الفيديوهات
-  @UseGuards(AuthGuard)
   @Get()
-  async getAllVideos() {
-    return this.videosService.getAll();
-  }
-
-  // البحث داخل الفيديوهات
-  @UseGuards(AuthGuard)
-  @Get('search')
-  async search(@Query('query') query: string) {
-    return this.videosService.search(query);
-  }
-
-  // حذف فيديو (اختياري)
-  @UseGuards(AuthGuard)
-  @Delete(':id')
-  async deleteVideo(@Param('id') id: string) {
-    return this.videosService.delete(id);
+  async getVideos() {
+    return await this.prisma.video.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
   }
 }
