@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تسجيل الدخول</title>
+
+<style>
+body {
+  background:#111;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  padding:40px;
+}
+input {
+  width:300px;
+  padding:10px;
+  margin:10px;
+  border-radius:6px;
+  border:none;
+}
+button {
+  width:320px;
+  padding:10px;
+  background:#3498db;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover {
+  background:#2980b9;
+}
+</style>
+</head>
+
+<body>
+<h2>🔐 تسجيل الدخول</h2>
+
+<input id="email" type="email" placeholder="البريد الإلكتروني">
+<input id="password" type="password" placeholder="كلمة المرور">
+
+<button onclick="login()">تسجيل الدخول</button>
+
+<script>
+async function login() {
+  const email
