@@ -1,13 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>بحث داخل الفيديوهات</title>
+
+  <!-- حماية الصفحة -->
+  <script src="auth-check.js"></script>
+  <script>checkAuth();</script>
+
+  <style>
+    body {
+      background:#111;
+      color:white;
+      font-family:Arial;
+      padding:20px;
+      text-align:center;
+    }
+    .box {
+      max-width:500px;
+      margin:auto;
+      background:#1a1a1a;
+      padding:20px;
+      border-radius:10px;
+    }
+    button {
+      margin-top:15px;
+      width:100%;
+      padding:12px;
+      background:#3498db;
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:16px;
+      cursor:pointer;
+    }
+    button:hover {
+      background:#2980b9;
+    }
+  </style>
+</head>
+
+<body>
+
 <h2>بحث داخل الفيديوهات</h2>
 
-<div style="max-width:500px; margin:auto; background:#1a1a1a; padding:20px; border-radius:10px; color:white;">
+<div class="box">
   <label>اكتب كلمة للبحث:</label>
   <input id="query" type="text" style="width:100%; padding:10px; border-radius:8px; margin-top:10px;">
 
-  <button onclick="searchVideos()" 
-    style="margin-top:15px; width:100%; padding:12px; background:#3498db; color:white; border:none; border-radius:8px; font-size:16px;">
-    🔍 بحث
-  </button>
+  <button onclick="searchVideos()">🔍 بحث</button>
 
   <div id="results" style="margin-top:20px;"></div>
 </div>
@@ -32,6 +73,8 @@ async function searchVideos() {
     return;
   }
 
+  container.innerHTML = `<p>🔎 عدد النتائج: ${videos.length}</p>`;
+
   videos.forEach(video => {
     const card = document.createElement("div");
     card.style = "margin-top:20px; background:#1a1a1a; padding:15px; border-radius:10px; color:white;";
@@ -46,3 +89,6 @@ async function searchVideos() {
   });
 }
 </script>
+
+</body>
+</html>
