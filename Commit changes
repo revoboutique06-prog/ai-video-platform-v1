@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>توليد فيديو | RevoFlow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="auth-check.js"></script>
+<script>checkAuth();</script>
+
+<style>
+  body { background:#0d0d0d; color:white; font-family:Arial; padding:20px; text-align:center; }
+  h2 { font-size:28px; margin-bottom:20px; }
+  textarea {
+    width:90%; max-width:500px; height:120px; padding:15px;
+    border-radius:10px; border:none; font-size:16px;
+    background:#1a1a1a; color:white; margin-bottom:20px;
+  }
+  .btn {
+    display:block; width:90%; max-width:300px; margin:15px auto; padding:15px;
+    background:#00c8ff; color:black; border-radius:10px;
+    font-size:18px; font-weight:bold; text-decoration:none; transition:0.3s;
+  }
+  .btn:hover { background:#0099cc; transform:scale(1.05); }
+  #status { margin-top:20px; font-size:18px; opacity:0.9; }
+</style>
+</head>
+
+<body>
+
+<h2>🎬 توليد فيديو جديد</h2>
+
+<textarea id="prompt" placeholder="اكتب وصف الفيديو الذي تريد توليده..."></textarea>
+
+<button class="btn" onclick="generateVideo()">🚀 توليد الفيديو</button>
+
+<div id="status"></div>
+
+<script>
+async function generateVideo() {
+  const prompt = document.getElementById("prompt").value;
+
+  if (!prompt.trim()) {
+    alert("الرجاء كتابة وصف الفيديو");
+    return;
+  }
+
+  document.getElementById("status").innerText = "⏳ جاري توليد الفيديو...";
+
+  const response = await fetch("/videos/create", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt })
+  });
+
+  const data = await response.json();
+
+  if (data.success) {
+    document.getElementById("status").innerHTML =
+      "✅ تم توليد الفيديو بنجاح!<br>سيظهر داخل صفحة الفيديوهات.";
+    setTimeout(() => {
+      window.location.href = "video.html";
+    }, 1500);
+  } else {
+    document.getElementById("status").innerText =
+      "❌ حدث خطأ أثناء توليد الفيديو.";
+  }
+}
+</script>
+
+</body>
+</html>
