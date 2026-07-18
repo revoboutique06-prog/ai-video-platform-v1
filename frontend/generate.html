@@ -1,0 +1,14 @@
+@Post('generate-video')
+@UseGuards(AuthGuard)
+async generateVideo(@Body() body: { script: string }) {
+
+  // هنا تربط API التوليد الحقيقي
+  // مثال: إرسال النص إلى خدمة توليد فيديو خارجية
+
+  const generatedVideoUrl = "http://localhost:3000/uploads/generated-" + Date.now() + ".mp4";
+
+  return {
+    success: true,
+    url: generatedVideoUrl
+  };
+}
