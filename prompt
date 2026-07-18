@@ -1,1 +1,29 @@
-<textarea id="prompt"></textarea>
+<script>
+async function generateVideo() {
+  const prompt = document.getElementById("prompt").value;
+
+  if (!prompt.trim()) {
+    alert("اكتب نص أولاً!");
+    return;
+  }
+
+  document.getElementById("result").innerHTML = "⏳ جاري توليد الفيديو...";
+
+  const response = await fetch("/videos", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt })
+  });
+
+  const data = await response.json();
+
+  if (data.url) {
+    document.getElementById("result").innerHTML = `
+      <h3>✔ تم توليد الفيديو</h3>
+      <video src="${data.url}" controls style="width:100%; border-radius:8px;"></video>
+    `;
+  } else {
+    document.getElementById("result").innerHTML = "❌ حدث خطأ أثناء توليد الفيديو.";
+  }
+}
+</script>
