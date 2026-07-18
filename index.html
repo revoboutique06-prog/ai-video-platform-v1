@@ -1,85 +1,208 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>منصة RevoFlow</title>
+<meta charset="UTF-8">
+<title>RevoFlow | منصّة توليد الفيديو بالذكاء الاصطناعي</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- حماية الصفحة -->
-    <script src="auth-check.js"></script>
-    <script>checkAuth();</script>
+<style>
+body {
+  margin:0;
+  font-family: 'Arial';
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  color:white;
+}
 
-    <style>
-        body {
-            background: #111;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 40px;
-        }
-        .box {
-            background: #222;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            margin: auto;
-        }
-        button {
-            background: #0af;
-            color: #fff;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #08c;
-        }
-    </style>
+/* هيدر */
+header {
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#111;
+  position:sticky;
+  top:0;
+  border-bottom:1px solid #222;
+}
+header h1 {
+  margin:0;
+  font-size:26px;
+  color:#00c8ff;
+  font-weight:bold;
+}
+header nav a {
+  color:#ddd;
+  text-decoration:none;
+  margin-left:20px;
+  font-size:18px;
+}
+header nav a:hover {
+  color:#00c8ff;
+}
+
+/* القسم الرئيسي */
+.hero {
+  text-align:center;
+  padding:100px 20px;
+  animation: fadeIn 1.5s ease;
+}
+.hero h2 {
+  font-size:40px;
+  margin-bottom:20px;
+  font-weight:bold;
+}
+.hero p {
+  font-size:20px;
+  color:#ccc;
+  margin-bottom:30px;
+}
+.hero button {
+  background:#00c8ff;
+  border:none;
+  padding:18px 35px;
+  font-size:20px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.hero button:hover {
+  background:#0099cc;
+  transform:scale(1.05);
+}
+
+/* الميزات */
+.features {
+  padding:60px 20px;
+  text-align:center;
+}
+.features h3 {
+  font-size:32px;
+  margin-bottom:40px;
+}
+.feature-box {
+  background:#1f1f1f;
+  padding:25px;
+  border-radius:14px;
+  margin:20px auto;
+  width:90%;
+  max-width:450px;
+  border:1px solid #333;
+  transition:0.3s;
+}
+.feature-box:hover {
+  transform:scale(1.03);
+  border-color:#00c8ff;
+}
+
+/* الأسعار */
+.pricing {
+  padding:60px 20px;
+  text-align:center;
+}
+.pricing h3 {
+  font-size:32px;
+}
+.price-box {
+  background:#1f1f1f;
+  padding:30px;
+  border-radius:14px;
+  width:90%;
+  max-width:380px;
+  margin:30px auto;
+  border:1px solid #333;
+  transition:0.3s;
+}
+.price-box:hover {
+  transform:scale(1.03);
+  border-color:#00c8ff;
+}
+.price-box button {
+  background:#00c8ff;
+  border:none;
+  padding:15px;
+  width:100%;
+  border-radius:10px;
+  font-size:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.price-box button:hover {
+  background:#0099cc;
+  transform:scale(1.05);
+}
+
+/* فوتر */
+footer {
+  text-align:center;
+  padding:25px;
+  background:#111;
+  margin-top:40px;
+  color:#aaa;
+  border-top:1px solid #222;
+}
+
+/* أنيميشن */
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+</style>
 </head>
+
 <body>
 
-    <h1>منصة RevoFlow للذكاء الاصطناعي</h1>
-    <p>أدخل النص المطلوب لإنشاء فيديو باستخدام الذكاء الاصطناعي.</p>
+<header>
+  <h1>RevoFlow</h1>
+  <nav>
+    <a href="#features">الميزات</a>
+    <a href="#pricing">الأسعار</a>
+    <a href="login.html">تسجيل الدخول</a>
+  </nav>
+</header>
 
-    <div class="box">
-        <textarea id="textInput" rows="6" style="width:100%; border-radius:8px; padding:10px;"></textarea>
-        <br><br>
+<section class="hero">
+  <h2>حوّل النصوص إلى فيديو احترافي خلال ثوانٍ</h2>
+  <p>منصّة RevoFlow تستخدم الذكاء الاصطناعي لصناعة فيديوهات جاهزة للنشر بدون أي خبرة.</p>
+  <button onclick="window.location.href='payment.html'">ابدأ الآن</button>
+</section>
 
-        <button onclick="generateVideo()">🎬 إنشاء الفيديو</button>
+<section id="features" class="features">
+  <h3>مميزات RevoFlow</h3>
 
-        <div id="result" style="margin-top:20px;"></div>
-    </div>
+  <div class="feature-box">
+    <h4>🎬 توليد فيديو تلقائي</h4>
+    <p>اكتب نصًا… وسيقوم النظام بتحويله إلى فيديو كامل.</p>
+  </div>
 
-    <script>
-    async function generateVideo() {
-        const prompt = document.getElementById("textInput").value;
+  <div class="feature-box">
+    <h4>⚡ سرعة عالية</h4>
+    <p>الفيديو يُصنع خلال ثوانٍ فقط.</p>
+  </div>
 
-        if (!prompt.trim()) {
-            alert("اكتب نص أولاً!");
-            return;
-        }
+  <div class="feature-box">
+    <h4>🌐 يدعم جميع اللغات</h4>
+    <p>مناسب للمحتوى العربي والأجنبي.</p>
+  </div>
 
-        document.getElementById("result").innerHTML = "⏳ جاري توليد الفيديو...";
+  <div class="feature-box">
+    <h4>📦 جودة عالية</h4>
+    <p>فيديو جاهز للنشر فورًا.</p>
+  </div>
+</section>
 
-        const response = await fetch("/videos", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ prompt })
-        });
+<section id="pricing" class="pricing">
+  <h3>الأسعار</h3>
 
-        const data = await response.json();
+  <div class="price-box">
+    <h4>اشتراك شهري</h4>
+    <p>السعر: <strong>10$</strong></p>
+    <button onclick="window.location.href='payment.html'">اشترك الآن</button>
+  </div>
+</section>
 
-        if (data.url) {
-            document.getElementById("result").innerHTML = `
-                <h3>✔ تم توليد الفيديو</h3>
-                <video src="${data.url}" controls style="width:100%; border-radius:8px;"></video>
-            `;
-        } else {
-            document.getElementById("result").innerHTML = "❌ حدث خطأ أثناء توليد الفيديو.";
-        }
-    }
-    </script>
+<footer>
+  جميع الحقوق محفوظة © RevoFlow 2026
+</footer>
 
 </body>
 </html>
