@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    body { font-family: Arial; background: #f7f7f7; padding: 20px; }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    h2 { margin-bottom: 10px; }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>📊 لوحة التحكم</h1>
+
+  <div class="card">
+    <h2>الإحصائيات العامة</h2>
+    <p>عدد المستخدمين: <span id="usersCount"></span></p>
+    <p>عدد الفيديوهات: <span id="videosCount"></span></p>
+  </div>
+
+  <div class="card">
+    <h2>آخر 5 مستخدمين</h2>
+    <ul id="latestUsers"></ul>
+  </div>
+
+  <div class="card">
+    <h2>آخر 5 فيديوهات</h2>
+    <ul id="latestVideos"></ul>
+  </div>
+
+  <script>
+    async function loadDashboard() {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch("http://localhost:3000/dashboard", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      });
+
+      const data = await res.json();
+
+      document.getElementById("usersCount").innerText = data.stats.usersCount;
+      document.getElementById("videosCount").innerText = data.stats.videosCount;
+
+      const usersList = document.getElementById("latestUsers");
+      data.stats.latestUsers.forEach(u => {
+        usersList.innerHTML += `<li>${u.email} — ${new Date(u.createdAt).toLocaleString()}</li>`;
+      });
+
+      const videosList = document.getElementById("latestVideos");
+      data.stats.latestVideos.forEach(v => {
+        videosList.innerHTML += `<li>${v.filename} — ${new Date(v.createdAt).toLocaleString()}</li>`;
+      });
+    }
+
+    loadDashboard();
+  </script>
+
+</body>
+</html>
