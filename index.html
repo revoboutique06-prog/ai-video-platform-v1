@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>منصة RevoFlow</title>
+
+    <!-- حماية الصفحة -->
+    <script src="auth-check.js"></script>
+    <script>checkAuth();</script>
+
     <style>
         body {
             background: #111;
@@ -40,10 +45,41 @@
     <div class="box">
         <textarea id="textInput" rows="6" style="width:100%; border-radius:8px; padding:10px;"></textarea>
         <br><br>
-        <button onclick="alert('سيتم إضافة API لاحقاً')">إنشاء الفيديو</button>
-   </div>
 
-    <script src="script.js"></script>
+        <button onclick="generateVideo()">🎬 إنشاء الفيديو</button>
+
+        <div id="result" style="margin-top:20px;"></div>
+    </div>
+
+    <script>
+    async function generateVideo() {
+        const prompt = document.getElementById("textInput").value;
+
+        if (!prompt.trim()) {
+            alert("اكتب نص أولاً!");
+            return;
+        }
+
+        document.getElementById("result").innerHTML = "⏳ جاري توليد الفيديو...";
+
+        const response = await fetch("/videos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt })
+        });
+
+        const data = await response.json();
+
+        if (data.url) {
+            document.getElementById("result").innerHTML = `
+                <h3>✔ تم توليد الفيديو</h3>
+                <video src="${data.url}" controls style="width:100%; border-radius:8px;"></video>
+            `;
+        } else {
+            document.getElementById("result").innerHTML = "❌ حدث خطأ أثناء توليد الفيديو.";
+        }
+    }
+    </script>
+
 </body>
-</html> 
-
+</html>
