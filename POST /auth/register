@@ -1,0 +1,21 @@
+@Post('register')
+async register(@Body() body) {
+  const { name, email, password } = body;
+
+  if (!name || !email || !password) {
+    return { success: false, message: "الرجاء تعبئة جميع الحقول" };
+  }
+
+  // التحقق إذا الإيميل موجود مسبقًا
+  const exists = await this.prisma.user.findUnique({ where: { email } });
+  if (exists) {
+    return { success: false, message: "الإيميل مستخدم مسبقًا" };
+  }
+
+  // إنشاء المستخدم
+  const newUser = await this.prisma.user.create({
+    data: { name, email, password }
+  });
+
+  return { success: true, message: "تم إنشاء الحساب بنجاح", userId: newUser.id };
+}
