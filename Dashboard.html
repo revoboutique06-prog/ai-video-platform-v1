@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة التحكم | RevoFlow</title>
+
+  <!-- حماية الصفحة -->
+  <script src="auth-check.js"></script>
+  <script>checkAuth();</script>
+
+  <style>
+    body {
+      background:#111;
+      color:white;
+      font-family:Arial;
+      padding:20px;
+      text-align:center;
+    }
+    h1 {
+      margin-bottom:30px;
+    }
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+      gap:20px;
+      max-width:900px;
+      margin:auto;
+    }
+    .card {
+      background:#1a1a1a;
+      padding:25px;
+      border-radius:12px;
+      cursor:pointer;
+      transition:0.2s;
+    }
+    .card:hover {
+      background:#222;
+      transform:scale(1.03);
+    }
+    .card h3 {
+      margin-bottom:10px;
+    }
+    .logout {
+      margin-top:40px;
+      background:#e74c3c;
+      color:white;
+      padding:12px 25px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>لوحة التحكم — منصة RevoFlow</h1>
+
+<div class="grid">
+
+  <div class="card" onclick="go('generate.html')">
+    <h3>🎬 توليد فيديو جديد</h3>
+    <p>اكتب نص وسيتم تحويله إلى فيديو بالذكاء الاصطناعي.</p>
+  </div>
+
+  <div class="card" onclick="go('videos.html')">
+    <h3>📁 سجل الفيديوهات</h3>
+    <p>عرض جميع الفيديوهات التي تم توليدها.</p>
+  </div>
+
+  <div class="card" onclick="go('search.html')">
+    <h3>🔍 البحث داخل الفيديوهات</h3>
+    <p>ابحث عن فيديو معين باستخدام الكلمات.</p>
+  </div>
+
+</div>
+
+<button class="logout" onclick="logout()">🚪 تسجيل الخروج</button>
+
+<script>
+function go(page) {
+  window.location.href = page;
+}
+
+async function logout() {
+  await fetch("/auth/logout", { method: "POST" });
+  window.location.href = "/login.html";
+}
+</script>
+
+</body>
+</html>
