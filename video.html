@@ -1,6 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>سجل الفيديوهات</title>
+
+  <!-- حماية الصفحة -->
+  <script src="auth-check.js"></script>
+  <script>checkAuth();</script>
+
+  <style>
+    body {
+      background:#111;
+      color:white;
+      font-family:Arial;
+      padding:20px;
+      text-align:center;
+    }
+    #videosList {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+      gap:20px;
+      margin-top:20px;
+    }
+    .card {
+      background:#1a1a1a;
+      padding:15px;
+      border-radius:10px;
+      color:white;
+    }
+  </style>
+</head>
+
+<body>
+
 <h2>سجل الفيديوهات</h2>
 
-<div id="videosList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;"></div>
+<div id="videosList"></div>
 
 <script>
 async function loadVideos() {
@@ -12,10 +47,7 @@ async function loadVideos() {
 
   videos.forEach(video => {
     const card = document.createElement("div");
-    card.style.background = "#1a1a1a";
-    card.style.padding = "15px";
-    card.style.borderRadius = "10px";
-    card.style.color = "white";
+    card.className = "card";
 
     card.innerHTML = `
       <video src="${video.url}" controls style="width:100%; border-radius:8px;"></video>
@@ -29,3 +61,6 @@ async function loadVideos() {
 
 loadVideos();
 </script>
+
+</body>
+</html>
