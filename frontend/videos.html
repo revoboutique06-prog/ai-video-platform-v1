@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>عرض الفيديوهات</title>
+  <style>
+    body { font-family: Arial; background: #f7f7f7; padding: 20px; }
+    .video-card {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    video {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📹 قائمة الفيديوهات</h2>
+  <div id="videos"></div>
+
+  <script>
+    async function loadVideos() {
+      const token = localStorage.getItem("token"); // ضع التوكن هنا
+
+      const res = await fetch("http://localhost:3000/video/all", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      });
+
+      const data = await res.json();
+      const container = document.getElementById("videos");
+
+      data.videos.forEach(video => {
+        const card = document.createElement("div");
+        card.className = "video-card";
+
+        card.innerHTML = `
+          <h3>${video.filename}</h3>
+          <video controls>
+            <source src="http://localhost:3000/video/stream/${video.filename}" type="video/mp4">
+          </video>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    loadVideos();
+  </script>
+
+</body>
+</html>
