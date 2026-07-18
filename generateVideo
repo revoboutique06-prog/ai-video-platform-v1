@@ -1,1 +1,4 @@
-<button onclick="generateVideo()">🎬 توليد الفيديو</button>
+<button onclick="generateVideo()" 
+  style="margin-top:15px; width:100%; padding:12px; background:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px;">
+  🎬 توليد الفيديو
+</button>
