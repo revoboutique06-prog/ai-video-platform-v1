@@ -1,41 +1,10 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <title>عرض الفيديو</title>
-    <style>
-        body {
-            background: #111;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 80px;
-        }
-        video {
-            width: 90%;
-            max-width: 600px;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-        a {
-            color: #0af;
-            font-size: 20px;
-            display: block;
-            margin-top: 25px;
-        }
-    </style>
-</head>
-<body>
+<script>
+    // قراءة رابط الفيديو من LocalStorage
+    let videoUrl = localStorage.getItem("video_url");
 
-    <h1>الفيديو جاهز للعرض</h1>
-
-    <!-- سيتم وضع رابط الفيديو هنا بعد ربط API -->
-    <video controls>
-        <source src="" type="video/mp4">
-        المتصفح لا يدعم تشغيل الفيديو.
-    </video>
-
-    <a href="index.html">العودة للصفحة الرئيسية</a>
-
-</body>
-</html>
+    // إذا كان الرابط موجود، نعرضه داخل الفيديو
+    if (videoUrl) {
+        document.querySelector("video source").src = videoUrl;
+        document.querySelector("video").load();
+    }
+</script>
