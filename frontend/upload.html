@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>رفع الفيديو</title>
+  <style>
+    body { font-family: Arial; background: #f7f7f7; padding: 20px; }
+    .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 350px;
+      margin: auto;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>📤 رفع فيديو جديد</h2>
+
+    <input type="file" id="file" accept="video/mp4">
+    <button onclick="uploadVideo()">رفع الفيديو</button>
+
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    async function uploadVideo() {
+      const file = document.getElementById("file").files[0];
+      const msg = document.getElementById("msg");
+
+      if (!file) {
+        msg.innerHTML = "❌ اختر فيديو أولاً";
+        return;
+      }
+
+      const token = localStorage.getItem("token");
+
+      const formData = new FormData();
+      formData.append("video", file);
+
+      const res = await fetch("http://localhost:3000/video/upload", {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer " + token
+        },
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        msg.innerHTML = "✔ تم رفع الفيديو بنجاح";
+      } else {
+        msg.innerHTML = "❌ حدث خطأ أثناء الرفع";
+      }
+    }
+  </script>
+
+</body>
+</html>
