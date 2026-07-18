@@ -6,5 +6,6 @@ document.querySelector("button").addEventListener("click", function() {
         return;
     }
 
-    alert("سيتم إرسال النص إلى API لاحقاً: " + text);
+    // الانتقال إلى صفحة الانتظار
+    window.location.href = "loading.html";
 });
