@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول</title>
+  <style>
+    body { font-family: Arial; background: #f7f7f7; padding: 20px; }
+    .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 350px;
+      margin: auto;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>🔐 تسجيل الدخول</h2>
+
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="login()">دخول</button>
+
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const msg = document.getElementById("msg");
+
+      if (!email || !password) {
+        msg.innerHTML = "❌ أدخل البريد وكلمة المرور";
+        return;
+      }
+
+      const res = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        msg.innerHTML = "✔ تسجيل الدخول ناجح";
+
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 800);
+      } else {
+        msg.innerHTML = "❌ بيانات غير صحيحة";
+      }
+    }
+  </script>
+
+</body>
+</html>
