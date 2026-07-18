@@ -1,21 +1,52 @@
-@Post('register')
-async register(@Body() body) {
-  const { name, email, password } = body;
+import { Controller, Post, Body, Req } from '@nestjs/common';
+import { PrismaService } from '../prisma.service';
 
-  if (!name || !email || !password) {
-    return { success: false, message: "الرجاء تعبئة جميع الحقول" };
+@Controller('auth')
+export class AuthController {
+  constructor(private prisma: PrismaService) {}
+
+  // تسجيل حساب جديد
+  @Post('register')
+  async register(@Body() body) {
+    const { name, email, password } = body;
+
+    if (!name || !email || !password) {
+      return { success: false, message: "الرجاء تعبئة جميع الحقول" };
+    }
+
+    // التحقق إذا الإيميل موجود مسبقًا
+    const exists = await this.prisma.user.findUnique({ where: { email } });
+    if (exists) {
+      return { success: false, message: "الإيميل مستخدم مسبقًا" };
+    }
+
+    // إنشاء المستخدم
+    const newUser = await this.prisma.user.create({
+      data: { name, email, password }
+    });
+
+    return { success: true, message: "تم إنشاء الحساب بنجاح", userId: newUser.id };
   }
 
-  // التحقق إذا الإيميل موجود مسبقًا
-  const exists = await this.prisma.user.findUnique({ where: { email } });
-  if (exists) {
-    return { success: false, message: "الإيميل مستخدم مسبقًا" };
+  // تسجيل الدخول
+  @Post('login')
+  async login(@Body() body, @Req() req) {
+    const { email, password } = body;
+
+    const user = await this.prisma.user.findUnique({ where: { email } });
+
+    if (!user || user.password !== password) {
+      return { success: false, message: "بيانات تسجيل الدخول غير صحيحة" };
+    }
+
+    req.session.userId = user.id;
+
+    return { success: true, message: "تم تسجيل الدخول بنجاح" };
   }
 
-  // إنشاء المستخدم
-  const newUser = await this.prisma.user.create({
-    data: { name, email, password }
-  });
-
-  return { success: true, message: "تم إنشاء الحساب بنجاح", userId: newUser.id };
+  // التحقق من الجلسة
+  @Post('check')
+  async check(@Req() req) {
+    return { loggedIn: !!req.session.userId };
+  }
 }
