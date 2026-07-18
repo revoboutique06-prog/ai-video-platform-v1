@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>إنشاء حساب | RevoFlow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#0d0d0d;
+  color:white;
+}
+
+.container {
+  width:90%;
+  max-width:400px;
+  margin:60px auto;
+  background:#1a1a1a;
+  padding:25px;
+  border-radius:12px;
+  border:1px solid #333;
+}
+
+h2 {
+  text-align:center;
+  margin-bottom:25px;
+}
+
+input {
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+  background:#2a2a2a;
+  color:white;
+}
+
+button {
+  width:100%;
+  padding:15px;
+  background:#00c8ff;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+button:hover {
+  background:#0099cc;
+}
+
+p {
+  text-align:center;
+  margin-top:15px;
+}
+
+a {
+  color:#00c8ff;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>إنشاء حساب جديد</h2>
+
+  <input type="text" id="name" placeholder="الاسم الكامل">
+  <input type="email" id="email" placeholder="البريد الإلكتروني">
+  <input type="password" id="password" placeholder="كلمة المرور">
+
+  <button onclick="register()">إنشاء الحساب</button>
+
+  <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
+</div>
+
+<script>
+function register() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!name || !email || !password) {
+    alert("الرجاء تعبئة جميع الحقول");
+    return;
+  }
+
+  alert("تم إنشاء الحساب بنجاح ✔");
+}
+</script>
+
+</body>
+</html>
