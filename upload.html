@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>رفع صورة + نص</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      direction: rtl;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px #ddd;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    video {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>رفع صورة + نص</h2>
+
+    <label>ارفع صورة:</label>
+    <input type="file" id="imageInput" accept="image/*">
+
+    <label>اكتب النص الذي تريد أن ينطق:</label>
+    <textarea id="textInput" rows="4"></textarea>
+
+    <button onclick="startProcess()">إنشاء فيديو</button>
+
+    <video id="resultVideo" controls></video>
+  </div>
+
+  <script>
+    async function startProcess() {
+      const imageFile = document.getElementById("imageInput").files[0];
+      const text = document.getElementById("textInput").value;
+
+      if (!imageFile || !text) {
+        alert("رجاءً ارفع صورة واكتب نص.");
+        return;
+      }
+
+      // رفع الصورة إلى السيرفر
+      const formData = new FormData();
+      formData.append("image", imageFile);
+      formData.append("text", text);
+
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      document.getElementById("resultVideo").src = data.video;
+    }
+  </script>
+</body>
+</html>
