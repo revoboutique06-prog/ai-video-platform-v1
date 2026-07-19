@@ -7,7 +7,7 @@ export default {
     const imageFile = formData.get("image");
     const text = formData.get("text");
 
-    // 1) توليد صوت عربي من النص
+    // توليد صوت عربي من النص
     const replicate = new Replicate({
       auth: process.env.REPLICATE_API_TOKEN
     });
@@ -24,10 +24,10 @@ export default {
 
     const audioUrl = audio.audio;
 
-    // 2) رفع الصورة إلى Replicate
+    // رفع الصورة إلى Replicate
     const imageUrl = await replicate.upload(imageFile);
 
-    // 3) تشغيل SadTalker
+    // تشغيل SadTalker
     const video = await generateTalkingVideo(imageUrl, audioUrl);
 
     return new Response(JSON.stringify({ video }), {
