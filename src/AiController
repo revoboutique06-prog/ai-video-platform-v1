@@ -1,0 +1,15 @@
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+// ⭐ هذا السطر المهم — ربط AiController
+import { AiController } from './ai/ai.controller';
+
+@Module({
+  controllers: [
+    AppController,
+    AiController   // ⭐ هون عم نضيفه
+  ],
+  providers: [AppService],
+})
+export class AppModule {}
