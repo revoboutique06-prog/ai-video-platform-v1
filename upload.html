@@ -2,82 +2,76 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>رفع صورة + نص</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>رفع فيديو - RevoAI</title>
   <style>
     body {
-      font-family: sans-serif;
-      direction: rtl;
-      padding: 20px;
-      background: #f5f5f5;
+      background:#111;
+      color:white;
+      font-family:Arial, sans-serif;
+      text-align:center;
+      padding:40px;
     }
-    .box {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 0 10px #ddd;
+    .logo {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
     }
-    input, textarea, button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    .logo img {
+      height:60px;
+      border-radius:8px;
+      margin-right:10px;
+    }
+    .logo span {
+      font-size:24px;
+      font-weight:bold;
+      color:#4a90e2;
+    }
+    input, textarea {
+      width:300px;
+      padding:10px;
+      margin:10px;
+      border-radius:6px;
+      border:none;
     }
     button {
-      background: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
+      width:320px;
+      padding:10px;
+      background:#3498db;
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
     }
-    video {
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 10px;
+    button:hover {
+      background:#2980b9;
     }
   </style>
 </head>
-
 <body>
-  <div class="box">
-    <h2>رفع صورة + نص</h2>
 
-    <label>ارفع صورة:</label>
-    <input type="file" id="imageInput" accept="image/*">
-
-    <label>اكتب النص الذي تريد أن ينطق:</label>
-    <textarea id="textInput" rows="4"></textarea>
-
-    <button onclick="startProcess()">إنشاء فيديو</button>
-
-    <video id="resultVideo" controls></video>
+  <!-- شعار RevoAI -->
+  <div class="logo">
+    <img src="logo.png" alt="RevoAI">
+    <span>RevoAI</span>
   </div>
 
-  <script>
-    async function startProcess() {
-      const imageFile = document.getElementById("imageInput").files[0];
-      const text = document.getElementById("textInput").value;
+  <!-- عنوان -->
+  <h2>📤 رفع فيديو جديد</h2>
 
-      if (!imageFile || !text) {
-        alert("رجاءً ارفع صورة واكتب نص.");
-        return;
-      }
+  <!-- فورم رفع الفيديو -->
+  <form>
+    <input type="file" accept="video/*" required>
+    <input type="text" placeholder="أدخل عنوان الفيديو" required>
+    <textarea placeholder="وصف الفيديو..."></textarea>
+    <button type="submit">رفع الفيديو</button>
+  </form>
 
-      // رفع الصورة إلى السيرفر
-      const formData = new FormData();
-      formData.append("image", imageFile);
-      formData.append("text", text);
+  <!-- الفوتر -->
+  <footer style="margin-top:40px;">
+    <p>© 2026 RevoAI — جميع الحقوق محفوظة</p>
+  </footer>
 
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        body: formData
-      });
-
-      const data = await response.json();
-
-      document.getElementById("resultVideo").src = data.video;
-    }
-  </script>
 </body>
 </html>
