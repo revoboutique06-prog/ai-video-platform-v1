@@ -2,59 +2,57 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-
-  <!-- حماية الصفحة -->
-  <script src="auth-check.js"></script>
-  <script>checkAuth();</script>
-
-  <title>توليد فيديو جديد</title>
+  <title>توليد فيديو - RevoAI</title>
+  <style>
+    body { background:#0d0d0d; color:white; font-family:Arial; direction:rtl; text-align:center; }
+    h2 { margin-top:40px; color:#4a90e2; }
+    textarea {
+      width:90%; max-width:500px; height:120px;
+      margin-top:20px; padding:10px;
+      border-radius:8px; border:none;
+      font-size:16px;
+    }
+    .btn {
+      display:block;
+      width:200px;
+      margin:20px auto;
+      padding:12px;
+      background:#4a90e2;
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:18px;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .btn:hover { background:#357ac8; }
+  </style>
 </head>
+<body>
 
-<body style="background:#121212; color:white; font-family:Arial; padding:20px;">
+  <h2>توليد فيديو جديد</h2>
 
-<h2>توليد فيديو جديد</h2>
+  <textarea id="text" placeholder="اكتب النص الذي تريد تحويله إلى فيديو"></textarea>
 
-<div style="max-width:500px; margin:auto; background:#1a1a1a; padding:20px; border-radius:10px; color:white;">
-  <label>اكتب النص الذي تريد تحويله إلى فيديو:</label>
-  <textarea id="prompt" style="width:100%; height:120px; margin-top:10px; border-radius:8px; padding:10px;"></textarea>
+  <button class="btn" onclick="generateVideo()">🎬 توليد الفيديو</button>
 
-  <button onclick="generateVideo()" 
-    style="margin-top:15px; width:100%; padding:12px; background:#4CAF50; color:white; border:none; border-radius:8px; font-size:16px;">
-    🎬 توليد الفيديو
-  </button>
+  <script>
+    async function generateVideo() {
+      const text = document.getElementById("text").value;
 
-  <div id="result" style="margin-top:20px;"></div>
-</div>
+      if (!text.trim()) {
+        alert("الرجاء كتابة نص أولاً");
+        return;
+      }
 
-<script>
-async function generateVideo() {
-  const prompt = document.getElementById("prompt").value;
+      // محاكاة توليد فيديو (API وهمي)
+      // هنا لاحقًا تربط API الحقيقي مثل Hailuo أو أي منصة توليد فيديو
+      const fakeVideoUrl = "video1.mp4";
 
-  if (!prompt.trim()) {
-    alert("اكتب نص أولاً!");
-    return;
-  }
-
-  document.getElementById("result").innerHTML = "⏳ جاري توليد الفيديو...";
-
-  const response = await fetch("/videos", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt })
-  });
-
-  const data = await response.json();
-
-  if (data.url) {
-    document.getElementById("result").innerHTML = `
-      <h3>✔ تم توليد الفيديو</h3>
-      <video src="${data.url}" controls style="width:100%; border-radius:8px;"></video>
-    `;
-  } else {
-    document.getElementById("result").innerHTML = "❌ حدث خطأ أثناء توليد الفيديو.";
-  }
-}
-</script>
+      // تحويل المستخدم لصفحة عرض الفيديو
+      window.location.href = "video.html?url=" + fakeVideoUrl;
+    }
+  </script>
 
 </body>
 </html>
