@@ -1,98 +1,78 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<title>سجل الفيديوهات</title>
-
-<!-- حماية الصفحة -->
-<script src="auth-check.js"></script>
-<script>checkAuth();</script>
-
-<style>
-body {
-  background:#111;
-  color:white;
-  font-family:Arial;
-  padding:20px;
-  text-align:center;
-}
-#videos {
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:center;
-  margin-top:20px;
-}
-.card {
-  width:300px;
-  background:#1a1a1a;
-  padding:15px;
-  border-radius:10px;
-  color:white;
-}
-.delete-btn {
-  margin-top:10px;
-  background:#e74c3c;
-  color:white;
-  border:none;
-  padding:8px;
-  border-radius:6px;
-  width:100%;
-  cursor:pointer;
-}
-.delete-btn:hover {
-  background:#C0392b;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الفيديوهات - RevoAI</title>
+  <style>
+    body {
+      background:#111;
+      color:white;
+      font-family:Arial, sans-serif;
+      text-align:center;
+      padding:40px;
+    }
+    .logo {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
+    }
+    .logo img {
+      height:60px;
+      border-radius:8px;
+      margin-right:10px;
+    }
+    .logo span {
+      font-size:24px;
+      font-weight:bold;
+      color:#4a90e2;
+    }
+    .video-card {
+      background:#222;
+      padding:20px;
+      margin:20px auto;
+      border-radius:10px;
+      width:80%;
+    }
+    video {
+      width:100%;
+      border-radius:8px;
+    }
+  </style>
 </head>
-
 <body>
-<h2>سجل الفيديوهات</h2>
-<div id="videos"></div>
 
-<script>
-async function loadVideos() {
-  const response = await fetch("/videos");
-  const videos = await response.json();
+  <!-- شعار RevoAI -->
+  <div class="logo">
+    <img src="logo.png" alt="RevoAI">
+    <span>RevoAI</span>
+  </div>
 
-  const container = document.getElementById("videos");
-  container.innerHTML = "";
+  <!-- عنوان -->
+  <h2>🎬 مكتبة الفيديوهات</h2>
 
-  videos.forEach(video => {
-    const card = document.createElement("div");
-    card.className = "card";
+  <!-- قائمة الفيديوهات -->
+  <div class="video-card">
+    <h3>فيديو تجريبي 1</h3>
+    <video controls>
+      <source src="sample1.mp4" type="video/mp4">
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+  </div>
 
-    card.innerHTML = `
-      <video src="${video.url}" controls style="width:100%; border-radius:8px;"></video>
-      <div style="margin-top:10px; opacity:0.8;">🎥 ${video.prompt}</div>
-      <div style="margin-top:5px; opacity:0.6; font-size:12px;">🕒 ${new Date(video.createdAt).toLocaleString()}</div>
+  <div class="video-card">
+    <h3>فيديو تجريبي 2</h3>
+    <video controls>
+      <source src="sample2.mp4" type="video/mp4">
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+  </div>
 
-      <button class="delete-btn" onclick="deleteVideo('${video.id}')">
-        حذف الفيديو
-      </button>
-    `;
+  <!-- الفوتر -->
+  <footer style="margin-top:40px;">
+    <p>© 2026 RevoAI — جميع الحقوق محفوظة</p>
+  </footer>
 
-    container.appendChild(card);
-  });
-}
-
-async function deleteVideo(id) {
-  const ok = confirm("هل تريد حذف هذا الفيديو؟");
-  if (!ok) return;
-
-  const response = await fetch(`/videos/${id}`, {
-    method: "DELETE"
-  });
-
-  const result = await response.json();
-
-  if (result.success) {
-    alert("تم حذف الفيديو");
-    loadVideos();
-  }
-}
-
-loadVideos();
-</script>
 </body>
 </html>
