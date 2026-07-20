@@ -1,0 +1,42 @@
+export default {
+  async fetch(request, env) {
+    try {
+      // قراءة البيانات القادمة من النموذج
+      const formData = await request.formData();
+      const image = formData.get("image");
+      const text = formData.get("text");
+
+      if (!image || !text) {
+        return new Response("الصورة أو النص غير موجود", { status: 400 });
+      }
+
+      // قراءة مفتاح Replicate من المتغيرات
+      const token = env.REPLICATE_API_TOKEN;
+
+      // إرسال الطلب إلى Replicate
+      const replicateResponse = await fetch("https://api.replicate.com/v1/predictions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          version: "your-model-version-id",
+          input: {
+            image: await image.text(),
+            prompt: text
+          }
+        })
+      });
+
+      const result = await replicateResponse.json();
+
+      return new Response(JSON.stringify(result), {
+        headers: { "Content-Type": "application/json" }
+      });
+
+    } catch (err) {
+      return new Response("خطأ أثناء توليد الفيديو: " + err.message, { status: 500 });
+    }
+  }
+};
