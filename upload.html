@@ -5,73 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>رفع فيديو - RevoAI</title>
   <style>
-    body {
-      background:#111;
-      color:white;
-      font-family:Arial, sans-serif;
-      text-align:center;
-      padding:40px;
-    }
-    .logo {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-bottom:20px;
-    }
-    .logo img {
-      height:60px;
-      border-radius:8px;
-      margin-right:10px;
-    }
-    .logo span {
-      font-size:24px;
-      font-weight:bold;
-      color:#4a90e2;
-    }
-    input, textarea {
-      width:300px;
-      padding:10px;
-      margin:10px;
-      border-radius:6px;
-      border:none;
-    }
-    button {
-      width:320px;
-      padding:10px;
-      background:#3498db;
-      color:white;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-    }
-    button:hover {
-      background:#2980b9;
-    }
+    body { background:#0d0d0d; color:white; font-family:Arial; text-align:center; direction:rtl; }
+    .logo { display:flex; justify-content:center; align-items:center; margin-top:40px; }
+    .logo img { height:70px; margin-left:10px; border-radius:8px; }
+    .logo span { font-size:28px; font-weight:bold; color:#4a90e2; }
+    form { max-width:400px; margin:auto; margin-top:30px; background:#111; padding:25px; border-radius:10px; text-align:right; }
+    input, textarea { width:100%; padding:12px; margin:10px 0; background:#222; border:none; border-radius:6px; color:white; }
+    button { width:100%; padding:12px; background:#3498db; border:none; border-radius:6px; color:white; font-size:18px; cursor:pointer; }
   </style>
 </head>
 <body>
 
-  <!-- شعار RevoAI -->
-  <div class="logo">
-    <img src="logo.png" alt="RevoAI">
-    <span>RevoAI</span>
-  </div>
+<div class="logo">
+  <img src="logo.png" alt="RevoAI">
+  <span>RevoAI</span>
+</div>
 
-  <!-- عنوان -->
-  <h2>📤 رفع فيديو جديد</h2>
+<h2>رفع صورة أو نص لتوليد فيديو</h2>
 
-  <!-- فورم رفع الفيديو -->
-  <form>
-    <input type="file" accept="video/*" required>
-    <input type="text" placeholder="أدخل عنوان الفيديو" required>
-    <textarea placeholder="وصف الفيديو..."></textarea>
-    <button type="submit">رفع الفيديو</button>
-  </form>
+<form>
+  <label>ارفع صورة</label>
+  <input type="file" accept="image/*">
 
-  <!-- الفوتر -->
-  <footer style="margin-top:40px;">
-    <p>© 2026 RevoAI — جميع الحقوق محفوظة</p>
-  </footer>
+  <label>اكتب النص</label>
+  <textarea placeholder="اكتب النص هنا..."></textarea>
+
+  <button type="submit">توليد الفيديو</button>
+</form>
 
 </body>
 </html>
