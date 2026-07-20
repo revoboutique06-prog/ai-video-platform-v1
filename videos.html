@@ -2,37 +2,30 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الفيديوهات - RevoAI</title>
+  <title>عرض الفيديو</title>
   <style>
     body { background:#0d0d0d; color:white; font-family:Arial; direction:rtl; text-align:center; }
-    .logo { display:flex; justify-content:center; align-items:center; margin-top:40px; }
-    .logo img { height:70px; margin-left:10px; border-radius:8px; }
-    .logo span { font-size:28px; font-weight:bold; color:#4a90e2; }
-    .video-box { background:#111; padding:20px; margin:20px auto; border-radius:10px; max-width:500px; }
-    video { width:100%; border-radius:10px; }
+    h2 { margin-top:30px; color:#4a90e2; }
+    video { width:90%; max-width:500px; margin-top:20px; border-radius:10px; }
   </style>
 </head>
 <body>
 
-<div class="logo">
-  <img src="logo.png" alt="RevoAI">
-  <span>RevoAI</span>
-</div>
+  <h2>الفيديو الناتج</h2>
 
-<h2>الفيديوهات المولّدة</h2>
+  <video id="resultVideo" controls></video>
 
-<div class="video-box">
-  <video controls>
-    <source src="video1.mp4" type="video/mp4">
-  </video>
-</div>
+  <script>
+    // قراءة رابط الفيديو من الرابط URL
+    const params = new URLSearchParams(window.location.search);
+    const videoUrl = params.get("url");
 
-<div class="video-box">
-  <video controls>
-    <source src="video2.mp4" type="video/mp4">
-  </video>
-</div>
+    if (videoUrl) {
+      document.getElementById("resultVideo").src = videoUrl;
+    } else {
+      alert("لا يوجد فيديو للعرض");
+    }
+  </script>
 
 </body>
 </html>
