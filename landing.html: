@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RevoAI - الصفحة الرئيسية</title>
+  <style>
+    body {
+      background:#111;
+      color:white;
+      font-family:Arial, sans-serif;
+      text-align:center;
+      padding:40px;
+    }
+    .logo {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
+    }
+    .logo img {
+      height:70px;
+      border-radius:8px;
+      margin-right:10px;
+    }
+    .logo span {
+      font-size:28px;
+      font-weight:bold;
+      color:#4a90e2;
+    }
+    .btn {
+      display:inline-block;
+      margin:10px;
+      padding:12px 25px;
+      background:#3498db;
+      color:white;
+      border-radius:6px;
+      text-decoration:none;
+      font-size:18px;
+    }
+    .btn:hover {
+      background:#2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شعار RevoAI -->
+  <div class="logo">
+    <img src="logo.png" alt="RevoAI">
+    <span>RevoAI</span>
+  </div>
+
+  <!-- عنوان -->
+  <h1>👋 أهلاً بك في RevoAI</h1>
+  <p>منصّة الذكاء الاصطناعي لتوليد الفيديوهات بجودة عالية</p>
+
+  <!-- أزرار -->
+  <a class="btn" href="login.html">تسجيل الدخول</a>
+  <a class="btn" href="signup.html">إنشاء حساب</a>
+  <a class="btn" href="upload.html">رفع فيديو</a>
+  <a class="btn" href="videos.html">الفيديوهات</a>
+
+  <!-- الفوتر -->
+  <footer style="margin-top:40px;">
+    <p>© 2026 RevoAI — جميع الحقوق محفوظة</p>
+  </footer>
+
+</body>
+</html>
