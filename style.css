@@ -1,0 +1,120 @@
+/* إعدادات عامة */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* الهيدر */
+header {
+  background: #111;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav a {
+  color: #fff;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+/* قسم البطل (Hero) */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #4a90e2, #9013fe);
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 40px;
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #fff;
+  color: #4a90e2;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* المميزات */
+#features {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+#features ul {
+  list-style: none;
+  padding: 0;
+}
+
+#features li {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* قسم التجربة */
+#demo {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+#demo form {
+  margin-top: 20px;
+}
+
+#demo input, #demo textarea {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+}
+
+#demo button {
+  padding: 12px 25px;
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* قسم التواصل */
+#contact {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+#contact a {
+  margin: 0 10px;
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* الفوتر */
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  }
