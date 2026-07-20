@@ -1,47 +1,85 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<title>تسجيل الدخول</title>
-
-<style>
-body {
-  background:#111;
-  color:white;
-  font-family:Arial;
-  text-align:center;
-  padding:40px;
-}
-input {
-  width:300px;
-  padding:10px;
-  margin:10px;
-  border-radius:6px;
-  border:none;
-}
-button {
-  width:320px;
-  padding:10px;
-  background:#3498db;
-  color:white;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-button:hover {
-  background:#2980b9;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول - RevoAI</title>
+  <style>
+    body {
+      background:#111;
+      color:white;
+      font-family:Arial, sans-serif;
+      text-align:center;
+      padding:40px;
+    }
+    .logo {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
+    }
+    .logo img {
+      height:60px;
+      border-radius:8px;
+      margin-right:10px;
+    }
+    .logo span {
+      font-size:24px;
+      font-weight:bold;
+      color:#4a90e2;
+    }
+    input {
+      width:300px;
+      padding:10px;
+      margin:10px;
+      border-radius:6px;
+      border:none;
+    }
+    button {
+      width:320px;
+      padding:10px;
+      background:#3498db;
+      color:white;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    button:hover {
+      background:#2980b9;
+    }
+  </style>
 </head>
-
 <body>
-<h2>🔐 تسجيل الدخول</h2>
 
-<input id="email" type="email" placeholder="البريد الإلكتروني">
-<input id="password" type="password" placeholder="كلمة المرور">
+  <!-- شعار RevoAI -->
+  <div class="logo">
+    <img src="logo.png" alt="RevoAI">
+    <span>RevoAI</span>
+  </div>
 
-<button onclick="login()">تسجيل الدخول</button>
+  <!-- عنوان -->
+  <h2>🔐 تسجيل الدخول</h2>
 
-<script>
-async function login() {
-  const email
+  <!-- فورم تسجيل الدخول -->
+  <input id="email" type="email" placeholder="البريد الإلكتروني">
+  <input id="password" type="password" placeholder="كلمة المرور">
+
+  <button onclick="login()">تسجيل الدخول</button>
+
+  <p>ليس لديك حساب؟ <a href="signup.html" style="color:#4a90e2;">سجّل الآن</a></p>
+
+  <script>
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if(email && password){
+        alert("تم تسجيل الدخول بنجاح ✅");
+      } else {
+        alert("يرجى إدخال البريد الإلكتروني وكلمة المرور ❗");
+      }
+    }
+  </script>
+
+</body>
+</html>
