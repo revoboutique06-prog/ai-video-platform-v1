@@ -5,74 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>الفيديوهات - RevoAI</title>
   <style>
-    body {
-      background:#111;
-      color:white;
-      font-family:Arial, sans-serif;
-      text-align:center;
-      padding:40px;
-    }
-    .logo {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-bottom:20px;
-    }
-    .logo img {
-      height:60px;
-      border-radius:8px;
-      margin-right:10px;
-    }
-    .logo span {
-      font-size:24px;
-      font-weight:bold;
-      color:#4a90e2;
-    }
-    .video-card {
-      background:#222;
-      padding:20px;
-      margin:20px auto;
-      border-radius:10px;
-      width:80%;
-    }
-    video {
-      width:100%;
-      border-radius:8px;
-    }
+    body { background:#0d0d0d; color:white; font-family:Arial; direction:rtl; text-align:center; }
+    .logo { display:flex; justify-content:center; align-items:center; margin-top:40px; }
+    .logo img { height:70px; margin-left:10px; border-radius:8px; }
+    .logo span { font-size:28px; font-weight:bold; color:#4a90e2; }
+    .video-box { background:#111; padding:20px; margin:20px auto; border-radius:10px; max-width:500px; }
+    video { width:100%; border-radius:10px; }
   </style>
 </head>
 <body>
 
-  <!-- شعار RevoAI -->
-  <div class="logo">
-    <img src="logo.png" alt="RevoAI">
-    <span>RevoAI</span>
-  </div>
+<div class="logo">
+  <img src="logo.png" alt="RevoAI">
+  <span>RevoAI</span>
+</div>
 
-  <!-- عنوان -->
-  <h2>🎬 مكتبة الفيديوهات</h2>
+<h2>الفيديوهات المولّدة</h2>
 
-  <!-- قائمة الفيديوهات -->
-  <div class="video-card">
-    <h3>فيديو تجريبي 1</h3>
-    <video controls>
-      <source src="sample1.mp4" type="video/mp4">
-      متصفحك لا يدعم تشغيل الفيديو.
-    </video>
-  </div>
+<div class="video-box">
+  <video controls>
+    <source src="video1.mp4" type="video/mp4">
+  </video>
+</div>
 
-  <div class="video-card">
-    <h3>فيديو تجريبي 2</h3>
-    <video controls>
-      <source src="sample2.mp4" type="video/mp4">
-      متصفحك لا يدعم تشغيل الفيديو.
-    </video>
-  </div>
-
-  <!-- الفوتر -->
-  <footer style="margin-top:40px;">
-    <p>© 2026 RevoAI — جميع الحقوق محفوظة</p>
-  </footer>
+<div class="video-box">
+  <video controls>
+    <source src="video2.mp4" type="video/mp4">
+  </video>
+</div>
 
 </body>
 </html>
