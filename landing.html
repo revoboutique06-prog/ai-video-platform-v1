@@ -1,178 +1,68 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<title>RevoFlow | منصّة توليد الفيديو بالذكاء الاصطناعي</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-body {
-  margin:0;
-  background:#0d0d0d;
-  color:white;
-  font-family:Arial;
-}
-
-/* الهيدر */
-header {
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#111;
-  position:sticky;
-  top:0;
-}
-header h1 {
-  margin:0;
-  font-size:22px;
-  color:#00aaff;
-}
-header a {
-  color:white;
-  text-decoration:none;
-  margin-left:15px;
-  font-size:16px;
-}
-
-/* القسم الرئيسي */
-.hero {
-  text-align:center;
-  padding:80px 20px;
-}
-.hero h2 {
-  font-size:32px;
-  margin-bottom:15px;
-}
-.hero p {
-  font-size:18px;
-  color:#ccc;
-  margin-bottom:25px;
-}
-.hero button {
-  background:#00aaff;
-  border:none;
-  padding:15px 25px;
-  font-size:18px;
-  border-radius:8px;
-  cursor:pointer;
-}
-.hero button:hover {
-  background:#0088cc;
-}
-
-/* الميزات */
-.features {
-  padding:50px 20px;
-  text-align:center;
-}
-.features h3 {
-  font-size:26px;
-  margin-bottom:30px;
-}
-.feature-box {
-  background:#1a1a1a;
-  padding:20px;
-  border-radius:12px;
-  margin:15px auto;
-  width:90%;
-  max-width:400px;
-}
-
-/* الأسعار */
-.pricing {
-  padding:50px 20px;
-  text-align:center;
-}
-.pricing h3 {
-  font-size:26px;
-}
-.price-box {
-  background:#1a1a1a;
-  padding:25px;
-  border-radius:12px;
-  width:90%;
-  max-width:350px;
-  margin:20px auto;
-}
-.price-box button {
-  background:#00aaff;
-  border:none;
-  padding:12px;
-  width:100%;
-  border-radius:8px;
-  font-size:18px;
-  cursor:pointer;
-}
-.price-box button:hover {
-  background:#0088cc;
-}
-
-/* الفوتر */
-footer {
-  text-align:center;
-  padding:20px;
-  background:#111;
-  margin-top:40px;
-  color:#aaa;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>منصة RevoAI</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-  <h1>RevoFlow</h1>
-  <nav>
-    <a href="#features">الميزات</a>
-    <a href="#pricing">الأسعار</a>
-    <a href="login.html">تسجيل الدخول</a>
-  </nav>
-</header>
+  <!-- الهيدر -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="RevoAI" style="height:60px;">
+      <span>RevoAI</span>
+    </div>
+    <nav>
+      <a href="#features">المميزات</a>
+      <a href="#demo">جرّب الآن</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
 
-<section class="hero">
-  <h2>منصّة توليد الفيديو بالذكاء الاصطناعي</h2>
-  <p>حوّل النصوص إلى فيديوهات احترافية خلال ثوانٍ — بدون خبرة، بدون مونتاج، بدون برامج.</p>
-  <button onclick="window.location.href='payment.html'">اشترك الآن</button>
-</section>
+  <!-- قسم البطل -->
+  <section class="hero">
+    <h1>منصة RevoAI</h1>
+    <p>حوّل النصوص والصور إلى فيديوهات عالية الجودة بالذكاء الاصطناعي.</p>
+    <a href="#demo" class="btn">ابدأ الآن</a>
+  </section>
 
-<section id="features" class="features">
-  <h3>ماذا يقدم لك RevoFlow؟</h3>
+  <!-- قسم المميزات -->
+  <section id="features">
+    <h2>المميزات</h2>
+    <ul>
+      <li>تحويل صورة + نص إلى فيديو</li>
+      <li>جودة عالية مثل Higgsfield</li>
+      <li>واجهة سهلة الاستخدام</li>
+      <li>دعم الدفع بالكريبتو عبر NOWPayments</li>
+    </ul>
+  </section>
 
-  <div class="feature-box">
-    <h4>🎬 توليد فيديو تلقائي</h4>
-    <p>اكتب نصًا… وسيقوم النظام بتحويله إلى فيديو كامل.</p>
-  </div>
+  <!-- قسم التجربة -->
+  <section id="demo">
+    <h2>جرّب المنصة</h2>
+    <p>ارفع صورة واكتب نصك، وخلي RevoAI يولّد الفيديو.</p>
+    <form>
+      <input type="file" name="image">
+      <textarea placeholder="اكتب النص هنا..."></textarea>
+      <button type="submit">توليد الفيديو</button>
+    </form>
+  </section>
 
-  <div class="feature-box">
-    <h4>⚡ سرعة عالية</h4>
-    <p>الفيديو يُصنع خلال ثوانٍ فقط.</p>
-  </div>
+  <!-- قسم التواصل -->
+  <section id="contact">
+    <h2>تواصل معنا</h2>
+    <p>
+      <a href="mailto:info@revoai.com">info@revoai.com</a> |
+      <a href="https://instagram.com/revoai">Instagram</a> |
+      <a href="https://tiktok.com/@revoai">TikTok</a>
+    </p>
+  </section>
 
-  <div class="feature-box">
-    <h4>🌐 مناسب للمحتوى العربي والأجنبي</h4>
-    <p>يدعم جميع اللغات بدون مشاكل.</p>
-  </div>
-
-  <div class="feature-box">
-    <h4>📦 تصدير بجودة عالية</h4>
-    <p>احصل على فيديو جاهز للنشر فورًا.</p>
-  </div>
-</section>
-
-<section id="pricing" class="pricing">
-  <h3>الأسعار</h3>
-
-  <div class="price-box">
-    <h4>اشتراك شهري</h4>
-    <p>السعر: <strong>10$</strong></p>
-    <button onclick="window.location.href='payment.html'">اشترك الآن</button>
-  </div>
-</section>
-
-<footer>
-  جميع الحقوق محفوظة © RevoFlow 2026
-</footer>
+  <!-- الفوتر -->
+  <footer>
+    <p>© 2026 RevoAI - جميع الحقوق محفوظة</p>
+  </footer>
 
 </body>
-      </html>
+</html>
