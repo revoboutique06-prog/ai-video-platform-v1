@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RevoAI</title>
+  <title>منصة RevoAI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- الهيدر -->
   <header>
-    <div class="logo">RevoAI</div>
+    <div class="logo">
+      <img src="logo.png" alt="RevoAI" style="height:60px;">
+      <span>RevoAI</span>
+    </div>
     <nav>
       <a href="#features">المميزات</a>
       <a href="#demo">جرّب الآن</a>
@@ -17,14 +21,14 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- قسم البطل -->
   <section class="hero">
     <h1>منصة RevoAI</h1>
     <p>حوّل النصوص والصور إلى فيديوهات عالية الجودة بالذكاء الاصطناعي.</p>
     <a href="#demo" class="btn">ابدأ الآن</a>
   </section>
 
-  <!-- Features -->
+  <!-- قسم المميزات -->
   <section id="features">
     <h2>المميزات</h2>
     <ul>
@@ -35,7 +39,7 @@
     </ul>
   </section>
 
-  <!-- Demo -->
+  <!-- قسم التجربة -->
   <section id="demo">
     <h2>جرّب المنصة</h2>
     <p>ارفع صورة واكتب نصك، وخلي RevoAI يولّد الفيديو.</p>
@@ -46,7 +50,7 @@
     </form>
   </section>
 
-  <!-- Contact -->
+  <!-- قسم التواصل -->
   <section id="contact">
     <h2>تواصل معنا</h2>
     <p>تابعنا على تيك توك وإنستغرام لمحتوى ترند جديد.</p>
@@ -54,9 +58,10 @@
     <a href="https://instagram.com/revoai" target="_blank">Instagram</a>
   </section>
 
-  <!-- Footer -->
+  <!-- الفوتر -->
   <footer>
     <p>© 2026 RevoAI — جميع الحقوق محفوظة</p>
   </footer>
+
 </body>
 </html>
