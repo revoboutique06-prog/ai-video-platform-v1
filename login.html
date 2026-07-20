@@ -2,81 +2,37 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول - RevoAI</title>
-  <style>
-    body {
-      background:#111;
-      color:white;
-      font-family:Arial, sans-serif;
-      text-align:center;
-      padding:40px;
-    }
-    .logo {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-bottom:20px;
-    }
-    .logo img {
-      height:60px;
-      border-radius:8px;
-      margin-right:10px;
-    }
-    .logo span {
-      font-size:24px;
-      font-weight:bold;
-      color:#4a90e2;
-    }
-    input {
-      width:300px;
-      padding:10px;
-      margin:10px;
-      border-radius:6px;
-      border:none;
-    }
-    button {
-      width:320px;
-      padding:10px;
-      background:#3498db;
-      color:white;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-    }
-    button:hover {
-      background:#2980b9;
-    }
-  </style>
+  <title>تسجيل الدخول</title>
 </head>
 <body>
 
-  <!-- شعار RevoAI -->
-  <div class="logo">
-    <img src="logo.png" alt="RevoAI">
-    <span>RevoAI</span>
-  </div>
+  <h2>تسجيل الدخول</h2>
 
-  <!-- عنوان -->
-  <h2>🔐 تسجيل الدخول</h2>
+  <input id="email" placeholder="الإيميل">
+  <br><br>
 
-  <!-- فورم تسجيل الدخول -->
-  <input id="email" type="email" placeholder="البريد الإلكتروني">
-  <input id="password" type="password" placeholder="كلمة المرور">
+  <input id="password" placeholder="كلمة المرور" type="password">
+  <br><br>
 
-  <button onclick="login()">تسجيل الدخول</button>
-
-  <p>ليس لديك حساب؟ <a href="signup.html" style="color:#4a90e2;">سجّل الآن</a></p>
+  <button onclick="login()">دخول</button>
 
   <script>
     async function login() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      if(email && password){
-        alert("تم تسجيل الدخول بنجاح ✅");
+      const res = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("تم تسجيل الدخول بنجاح");
       } else {
-        alert("يرجى إدخال البريد الإلكتروني وكلمة المرور ❗");
+        alert(data.message);
       }
     }
   </script>
