@@ -1,39 +1,74 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
-import { PrismaService } from '../prisma.service';
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الفيديوهات - RevoAI</title>
+  <style>
+    body { background:#0d0d0d; color:white; font-family:Arial; direction:rtl; text-align:center; }
+    h2 { margin-top:40px; color:#4a90e2; }
 
-@Controller('videos')
-export class VideosController {
-  constructor(private prisma: PrismaService) {}
-
-  // توليد فيديو جديد
-  @Post('create')
-  async createVideo(@Body() body) {
-    const { prompt } = body;
-
-    if (!prompt) {
-      return { success: false, message: "الرجاء كتابة وصف الفيديو" };
+    .video-box {
+      background:#111;
+      padding:20px;
+      margin:20px auto;
+      border-radius:10px;
+      width:90%;
+      max-width:500px;
     }
 
-    // ⚠️ هنا مكان API توليد الفيديو الحقيقي
-    // الآن نضع رابط فيديو تجريبي فقط
-    const fakeVideoUrl = "https://example.com/fake-video.mp4";
+    video {
+      width:100%;
+      border-radius:10px;
+    }
 
-    // حفظ الفيديو في قاعدة البيانات
-    const video = await this.prisma.video.create({
-      data: {
-        prompt,
-        url: fakeVideoUrl
-      }
+    .btn {
+      display:block;
+      width:200px;
+      margin:20px auto;
+      padding:12px;
+      background:#4a90e2;
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:18px;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .btn:hover { background:#357ac8; }
+  </style>
+</head>
+<body>
+
+  <h2>الفيديوهات المولدة</h2>
+
+  <div id="videosContainer"></div>
+
+  <a class="btn" href="dashboard.html">🔙 رجوع للوحة التحكم</a>
+
+  <script>
+    // فيديوهات تجريبية – لاحقًا تربطها مع قاعدة بيانات أو API
+    const videos = [
+      "video1.mp4",
+      "video2.mp4",
+      "video3.mp4"
+    ];
+
+    const container = document.getElementById("videosContainer");
+
+    videos.forEach(url => {
+      const box = document.createElement("div");
+      box.className = "video-box";
+
+      box.innerHTML = `
+        <video controls>
+          <source src="${url}" type="video/mp4">
+        </video>
+      `;
+
+      container.appendChild(box);
     });
+  </script>
 
-    return { success: true, video };
-  }
-
-  // جلب الفيديوهات
-  @Get()
-  async getVideos() {
-    return await this.prisma.video.findMany({
-      orderBy: { createdAt: 'desc' }
-    });
-  }
-}
+</body>
+</html>
