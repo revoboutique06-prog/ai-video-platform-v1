@@ -1,0 +1,18 @@
+const express = require("express");
+const app = express();
+const cors = require("cors");
+
+// يفهم محتوى JSON
+app.use(express.json());
+app.use(cors());
+
+// الملفات ربط Backend
+const signupRoutes = require("./src/signup");
+
+// المسارات تفعيل
+app.use("/api", signupRoutes);
+
+// السيرفر تشغيل
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
